@@ -274,15 +274,6 @@
                 {
                     [self setPaperFoldState:PaperFoldStateDefault animated:YES];
                 }
-                if (self.enableHorizontalEdgeDragging)
-                {
-                    CGPoint location = [gesture locationInView:self.contentView];
-                    if (location.x < kEdgeScrollWidth || location.x > (self.contentView.frame.size.width-kEdgeScrollWidth))
-                    {
-                        self.paperFoldInitialPanDirection = PaperFoldInitialPanDirectionHorizontal;
-                    }
-                    else self.paperFoldInitialPanDirection = PaperFoldInitialPanDirectionVertical;
-                }
                 else self.paperFoldInitialPanDirection = PaperFoldInitialPanDirectionHorizontal;
             }
         }
@@ -944,13 +935,7 @@
 {
     if (self.enableHorizontalEdgeDragging)
     {
-        CGPoint location = [gestureRecognizer locationInView:self.contentView];
-        if (location.x < kEdgeScrollWidth || location.x > (self.contentView.frame.size.width-kEdgeScrollWidth))
-        {
-            
-            return NO;
-        }
-        else return YES;
+        return NO;
     }
     else return NO;
 }
