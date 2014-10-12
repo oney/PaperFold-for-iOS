@@ -111,6 +111,7 @@ typedef void (^CompletionBlock)();
 // set the bottom fold content view
 // and set the bottom fold container view frame
 - (void)setBottomFoldContentView:(UIView*)view;
+- (void)setBottomFoldContentView:(UIView*)view foldCount:(int)rightViewFoldCount pullFactor:(float)rightViewPullFactor;
 
 - (void)setCenterContentView:(UIView*)view;
 

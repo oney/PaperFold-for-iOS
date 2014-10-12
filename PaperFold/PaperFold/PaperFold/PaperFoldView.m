@@ -165,6 +165,28 @@
     self.enableBottomFoldDragging = YES;
 }
 
+- (void)setBottomFoldContentView:(UIView*)view foldCount:(int)rightViewFoldCount pullFactor:(float)rightViewPullFactor
+{
+    if (self.bottomFoldView) [self.bottomFoldView removeFromSuperview];
+    
+    self.bottomFoldView = [[FoldView alloc] initWithFrame:CGRectMake(0,self.frame.size.height-view.frame.size.height,view.frame.size.width,view.frame.size.height) foldDirection:FoldDirectionVertical];
+    [self.bottomFoldView setUseOptimizedScreenshot:self.useOptimizedScreenshot];
+    [self.bottomFoldView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [self insertSubview:self.bottomFoldView belowSubview:self.contentView];
+    [self.bottomFoldView setContent:view];
+    [self.bottomFoldView setHidden:YES];
+    [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0,self.frame.size.height,self.frame.size.width,1)];
+    [line setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+    [self.contentView addSubview:line];
+    [line setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:0.5]];
+    line.alpha = 0;
+    self.bottomDividerLine = line;
+    
+    self.enableBottomFoldDragging = YES;
+}
+
 - (void)setRightFoldContentView:(UIView*)view foldCount:(int)rightViewFoldCount pullFactor:(float)rightViewPullFactor
 {
     self.rightFoldView = [[MultiFoldView alloc] initWithFrame:CGRectMake(self.frame.size.width,0,view.frame.size.width,self.frame.size.height) foldDirection:FoldDirectionHorizontalRightToLeft folds:rightViewFoldCount pullFactor:rightViewPullFactor];
