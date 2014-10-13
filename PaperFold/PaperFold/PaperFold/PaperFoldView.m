@@ -935,7 +935,13 @@
 {
     if (self.enableHorizontalEdgeDragging)
     {
-        return NO;
+        CGPoint location = [gestureRecognizer locationInView:self.contentView];
+        if (location.x < kEdgeScrollWidth || location.x > (self.contentView.frame.size.width-kEdgeScrollWidth))
+        {
+            
+            return NO;
+        }
+        else return YES;
     }
     else return NO;
 }
