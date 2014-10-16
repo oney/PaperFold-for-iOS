@@ -30,15 +30,14 @@ typedef enum
     FoldDirectionVertical = 2,
 } FoldDirection;
 
-typedef enum
-{
+typedef NS_ENUM(NSInteger, PaperFoldState) {
     PaperFoldStateDefault = 0,
     PaperFoldStateLeftUnfolded = 1,
     PaperFoldStateRightUnfolded = 2,
     PaperFoldStateTopUnfolded = 3,
     PaperFoldStateBottomUnfolded = 4,
     PaperFoldStateTransition = 5
-} PaperFoldState;
+};
 
 typedef enum
 {
